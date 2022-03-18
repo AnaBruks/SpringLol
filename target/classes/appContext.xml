@@ -7,8 +7,21 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath: player.properties"/>
     <bean id="MusicBean"
           class="org.spr.ClassicalMusic">
+    </bean>
+
+    <!--<bean id="MusicPlayer"
+          class="org.spr.MusicPlayer">
+        <constructor-arg ref="MusicBean"/>  we need this param if the class has a constructor with params
+    </bean>-->
+
+    <bean id="MusicPlayer"
+          class="org.spr.MusicPlayer">
+        <property name="music" ref="MusicBean"/> <!-- using setter from the class -->
+        <property name="name" value="${player.name}"/>
+        <property name="volume" value="${player.volume}"/>
     </bean>
 
 </beans>

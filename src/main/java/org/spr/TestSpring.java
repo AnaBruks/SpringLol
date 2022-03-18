@@ -8,10 +8,14 @@ public class TestSpring {
         //TestBean bean = context.getBean("TestBean", TestBean.class); // class to create a bean
         //System.out.println(bean.getName()); // bean is an object created from class
 
-        Music music1 = context.getBean("MusicBean", Music.class);
         //IoC manually
-        MusicPlayer player = new MusicPlayer(music1);
+//        Music music1 = context.getBean("MusicBean", Music.class);
+//        MusicPlayer player = new MusicPlayer(music1);
+
+        //ID - dependency injection (with constructor)
+        MusicPlayer player = context.getBean("MusicPlayer", MusicPlayer.class);
         player.playMusic();
+        System.out.println(player.getName() +" " + player.getVolume());
 
         context.close(); //MUST BE CLOSED!
     }
