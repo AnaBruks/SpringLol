@@ -1,49 +1,32 @@
 package org.spr;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+import java.util.Random;
+
+@Component
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<>();
-    private Music music;
-    private String name;
-    private int volume;
+    // we can use @Autowired on setters, constructors, and PRIVATE field - because of reflection!
 
-    public List<Music> getMusicList() {
-        return musicList;
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
+
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
     }
-    public Music getMusic() {
-        return music;
-    }
-    public void setMusic(Music music) {
-        this.music = music;
-    }
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getVolume() {
-        return volume;
-    }
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-    public MusicPlayer() { }
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-    public void playMusicList() {
-        System.out.println("Music is playing: ");
-        for (Music music : musicList){
-            System.out.println(music.getSong() + "\n");
+
+    public void playMusic(Genre genre) {
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+
+        if (genre == Genre.CLASSICAL) {
+            System.out.println(classicalMusic.getSong().get(randomNumber));
+        } else {
+            System.out.println(rockMusic.getSong().get(randomNumber));
         }
-    }
-    public void playMusic(){
-        System.out.println("Music is playing: " + music.getSong());
     }
 }

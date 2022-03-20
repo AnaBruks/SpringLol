@@ -1,20 +1,24 @@
 package org.spr;
 
-public class ClassicalMusic implements Music{
-    private ClassicalMusic(){}
+import org.springframework.stereotype.Component;
 
-    public static ClassicalMusic createClassMusicObj(){  // kinda factory-method
-        return new ClassicalMusic();   // will be singleton in Spring by default
+import java.util.ArrayList;
+import java.util.List;
+
+@Component("MusicBean")
+public class ClassicalMusic implements Music{
+
+    List<String> clasSongs = new ArrayList<>();
+
+    {
+        clasSongs.add("songClass1");
+        clasSongs.add("songClass2");
+        clasSongs.add("songClass3");
     }
+
     @Override
-    public String getSong() {
-        return "Classical Music";
-    }
-    public void init(){
-        System.out.println("Inizialization...");
-    }
-    public void destroy(){
-        System.out.println("Destruction...");
+    public List<String> getSong() {
+        return clasSongs;
     }
 
 }

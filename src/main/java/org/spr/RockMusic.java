@@ -1,8 +1,21 @@
 package org.spr;
 
-public class RockMusic implements Music{
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+public class RockMusic implements Music {
+    List<String> rockSongs = new ArrayList<>();
+    {
+        rockSongs.add("songRock1");
+        rockSongs.add("songRock2");
+        rockSongs.add("songRock3");
+    }
+
     @Override
-    public String getSong() {
-        return "Rock Music";
+    public List<String> getSong() {
+        return rockSongs;
     }
 }

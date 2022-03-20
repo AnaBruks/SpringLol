@@ -1,7 +1,7 @@
 package org.spr;
 
-public class PopMusic implements Music{
-    @Override
+public class PopMusic {
+
     public String getSong() {
         return "Popsa";
     }
