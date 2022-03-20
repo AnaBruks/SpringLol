@@ -13,10 +13,14 @@ public class TestSpring {
 //        MusicPlayer player = new MusicPlayer(music1);
 
         //ID - dependency injection (with constructor)
-        MusicPlayer player = context.getBean("MusicPlayer", MusicPlayer.class);
-        player.playMusic();
-        System.out.println(player.getName() +" " + player.getVolume());
+//        MusicPlayer player = context.getBean("MusicPlayer", MusicPlayer.class);
+//       player.playMusic();
+//        System.out.println(player.getName() +" " + player.getVolume());
 
+ //       MusicPlayer player2 = context.getBean("musicListBean", MusicPlayer.class);
+  //      player2.playMusicList();
+
+        ClassicalMusic classicalMusic = context.getBean("MusicBean", ClassicalMusic.class);
         context.close(); //MUST BE CLOSED!
     }
 }

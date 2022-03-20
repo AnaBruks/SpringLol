@@ -1,27 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath: player.properties"/>
-    <bean id="MusicBean"
-          class="org.spr.ClassicalMusic">
-    </bean>
-
-    <!--<bean id="MusicPlayer"
-          class="org.spr.MusicPlayer">
-        <constructor-arg ref="MusicBean"/>  we need this param if the class has a constructor with params
-    </bean>-->
+    <!--<context:property-placeholder location="classpath: player.properties"/>
 
     <bean id="MusicPlayer"
           class="org.spr.MusicPlayer">
-        <property name="music" ref="MusicBean"/> <!-- using setter from the class -->
+        <constructor-arg ref="MusicBean"/>
+    </bean>-->
+
+    <!--<bean id="MusicPlayer"
+           class="org.spr.MusicPlayer">
+         <property name="music" ref="MusicBean"/>  using setter from the class
         <property name="name" value="${player.name}"/>
         <property name="volume" value="${player.volume}"/>
+    </bean>-->
+
+    <bean id="MusicBean"
+          class="org.spr.ClassicalMusic"
+          init-method="init"
+          destroy-method="destroy"
+          factory-method="createClassMusicObj"
+          scope="prototype">
     </bean>
 
+    <!-- <bean id="MusicBean2"
+          class="org.spr.RockMusic">
+    </bean>
+    <bean id="MusicBean3"
+          class="org.spr.PopMusic">
+    </bean>
+
+   <bean id="musicListBean"
+          class="org.spr.MusicPlayer">
+        <property name="musicList">
+            <list value-type="org.spr.Music">
+                <ref bean="MusicBean"/>
+                <ref bean="MusicBean2"/>
+                <ref bean="MusicBean3"/>
+            </list>
+        </property>
+    </bean>-->
 </beans>
