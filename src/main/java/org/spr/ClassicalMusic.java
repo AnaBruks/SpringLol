@@ -1,12 +1,22 @@
 package org.spr;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("MusicBean")
-public class ClassicalMusic implements Music{
+public class ClassicalMusic implements Music {
+
+   // @PostCostruct          @PostConstruct and @PreDestroy have been completely removed in Java 11
+    public void init() {
+        System.out.println("init");
+    }
+
+    // @PreDestroy            @PostConstruct and @PreDestroy have been completely removed in Java 11.
+    public void destroy() {
+        System.out.println("destroy");
+    }
 
     List<String> clasSongs = new ArrayList<>();
 

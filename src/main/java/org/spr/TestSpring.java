@@ -1,20 +1,15 @@
 package org.spr;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("appContext.xml");
+        //ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("appContext.xml");
 
-//        Music classicalMusic = context.getBean("MusicBean", Music.class);
-//        MusicPlayer player = new MusicPlayer(classicalMusic);
-//        player.playMusic(); // for classicalMusic
-
-     //   Computer computer = context.getBean("computer", Computer.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
         MusicPlayer player = context.getBean("musicPlayer", MusicPlayer.class);
-        player.playMusic(Genre.CLASSICAL);
-        player.playMusic(Genre.ROCK);
-
+        System.out.println(player.getName() + ", " + player.getVolume());
         context.close(); //MUST BE CLOSED!
     }
 }
